@@ -1,0 +1,35 @@
+---
+title: "Stock Data Exploration"
+author: "Zack Light"
+date: "November 7, 2018"
+output: html_document
+---
+
+```{r}
+library(Quandl)
+library(tidyverse)
+library(timeSeries)
+```
+
+```{r}
+Quandl.api_key("")
+mydata = Quandl.datatable("ZACKS/FC", ticker="AAPL") %>% 
+  as.tibble()
+colnames(mydata)
+tesla_stock = Quandl.datatable("TSLA", start_date="2018-01-31", end_date="2018-11-05")
+```
+
+```{r twitter official api}
+#install.packages("twitteR")
+library(twitteR) 
+# Change consumer_key, consume_secret, access_token, and 
+# access_secret based on your own keys
+consumer_key <- ""
+consumer_secret <-""
+access_token <- ""
+access_secret <- ""
+setup_twitter_oauth(consumer_key, consumer_secret, access_token, access_secret)
+tw = searchTwitter('@GalarnykMichael', n = 25)
+d = twListToDF(tw)
+```
+
